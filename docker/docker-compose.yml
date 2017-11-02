@@ -1,0 +1,35 @@
+version: "2"
+
+services:
+  php-fpm:
+    build: ./php/
+    restart: always
+    links:
+      - 'sshd'
+    networks:
+      - net-rubetek
+    volumes:
+      - "../:/home/rubetek/source"
+  sshd:
+    build: ./sshd/
+    restart: always
+    ports: ['2222:22']
+    networks:
+      - net-rubetek
+#  nginx:
+#    build: ./nginx
+#    restart: always
+#    ports: ['9801:80']
+#    links:
+#      - 'php-fpm'
+#    environment:
+#      - PHP_HOST=php-fpm
+#      - PHP_PORT=9000
+#    networks:
+#      - net-documents
+#    volumes:
+#      - "../:/home/carprice/source"
+
+networks:
+  net-rubetek:
+    driver: bridge

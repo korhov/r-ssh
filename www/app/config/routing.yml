@@ -1,0 +1,7 @@
+ssh_trace:
+    resource: "@SshTraceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
